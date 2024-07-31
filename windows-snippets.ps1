@@ -5,4 +5,4 @@
 (Get-Process | ? { $_.MainWindowTitle -ne "" } ) | % { $_.CloseMainWindow() }
 
 # Delete all local git branches except for current and master branches
-git branch | ? { -not ($_.Trim().StartsWith("*") -or $_.Trim() -eq "master")  } | % { git branch -D $_.Trim() }
+git branch | % { $_.Trim() } | ? { -not ($_.StartsWith("*") -or $_ -eq "master")  } | % { git branch -D $_ }
